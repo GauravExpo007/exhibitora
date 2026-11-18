@@ -1,0 +1,8 @@
+@extends('layouts.app')
+@section('title', $service['title'] . ' — Exhibitora')
+@section('content')
+<section class="inner-hero"><div class="mx-auto max-w-7xl px-5 py-16 lg:px-8 lg:py-24"><a href="{{ route('services.index') }}" class="back-link">← All services</a><p class="eyebrow mt-10">SERVICE {{ $service['number'] }} / EXHIBITION SUPPORT</p><h1 class="display-title mt-5 max-w-4xl text-5xl md:text-7xl">{{ $service['title'] }}<em>.</em></h1><p class="mt-6 max-w-2xl text-xl leading-8 text-muted">{{ $service['tagline'] }}</p></div></section>
+<section class="pb-20"><div class="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-2 lg:px-8"><img class="service-detail-image" src="{{ $service['image'] }}" alt="{{ $service['title'] }}"><div class="self-center"><p class="eyebrow">MADE FOR YOUR SHOW</p><h2 class="section-title mt-4">The details make <em>the difference.</em></h2><p class="mt-6 leading-8 text-muted">{{ $service['intro'] }}</p><ul class="check-list mt-7">@foreach($service['items'] as $item)<li><span>↗</span>{{ $item }}</li>@endforeach</ul><a href="{{ route('contact') }}" class="button button-primary mt-9">Enquire about this service <span>↗</span></a></div></div></section>
+<section class="bg-sand py-20"><div class="mx-auto max-w-7xl px-5 lg:px-8"><p class="eyebrow">KEEP EXPLORING</p><h2 class="section-title mt-3">More ways to <em>make it work.</em></h2><div class="mt-9 grid gap-5 md:grid-cols-3">@foreach($related as $slug => $item) @include('components.service-card', ['service' => $item, 'slug' => $slug]) @endforeach</div></div></section>
+@include('components.cta')
+@endsection
